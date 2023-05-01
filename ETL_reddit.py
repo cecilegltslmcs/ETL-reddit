@@ -12,8 +12,8 @@ def extract():
         user_agent = "my user agent"
     )
 
-    subreddit = client.subreddit("autism")
-    reddit_post = subreddit.hot(limit=25000)
+    subreddit = client.subreddit("subreddit to listen")
+    reddit_post = subreddit.hot(limit=250000)
     data = []
     for submission in reddit_post:
         data.append(
@@ -49,7 +49,7 @@ def load(data, dataset_name):
 def main():
     data = extract()
     #transformed_data = transform(data)
-    load(data, "autism")
+    load(data, "dataset")
 
 if __name__ == '__main__':
     main()
