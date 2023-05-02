@@ -29,7 +29,7 @@ def extract():
         )
     return data
 
-def transform(data):
+"""def transform(data):
     num_comments = [post.get('num_comments') for post in data]
 
     mean_num_comment = sum(num_comments) / len(num_comments)
@@ -40,7 +40,7 @@ def transform(data):
     return [post
             for post in data
             if post.get("num_comments") > mean_num_comment + 2 * std_num_comments
-            ]
+            ]"""
 
 def load(data, dataset_name):
     data = pd.DataFrame(data)
