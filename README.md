@@ -14,3 +14,5 @@ It is also possible to change the load step in order to load the data in a datab
 The main idea of the code came from this [article](https://www.startdataengineering.com/post/code-patterns/).
 
 The library [PRAW](https://praw.readthedocs.io/en/stable/) is used in this script but it can be also possible to used [request](https://fr.python-requests.org/en/latest/).
+
+For the future, this pipeline is going to be automatize to run every week. 
