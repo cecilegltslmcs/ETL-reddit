@@ -2,7 +2,6 @@ import praw
 import authentification_token as auth
 import pandas as pd
 
-
 def extract():
     client = praw.Reddit(
         client_id = auth.personal_script,
@@ -13,7 +12,7 @@ def extract():
     )
 
     subreddit = client.subreddit("subreddit to listen")
-    reddit_post = subreddit.hot(limit=250000)
+    reddit_post = subreddit.hot(limit=2500)
     data = []
     for submission in reddit_post:
         data.append(
