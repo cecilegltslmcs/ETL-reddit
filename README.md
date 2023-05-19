@@ -16,3 +16,10 @@ The main idea of the code came from this [article](https://www.startdataengineer
 The library [PRAW](https://praw.readthedocs.io/en/stable/) is used in this script but it can be also possible to used [request](https://fr.python-requests.org/en/latest/).
 
 For the future, this pipeline is going to be automatize to run every week. 
+
+---
+
+## Storage
+
+To store the collected data, a PostgreSQL database will be used.
+
