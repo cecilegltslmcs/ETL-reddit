@@ -46,9 +46,12 @@ def load(data, dataset_name):
     data.to_csv("data/"+dataset_name+".csv")
 
 def main():
+    print("Beginning Extraction...")
     data = extract()
     #transformed_data = transform(data)
-    load(data, "autism-4")
+    print("Beginning Loading...")
+    load(data, "autism-7")
+    print("End!")
 
 if __name__ == '__main__':
     main()
