@@ -50,7 +50,7 @@ def main():
     data = extract()
     #transformed_data = transform(data)
     print("Beginning Loading...")
-    load(data, "autism-7")
+    load(data, "autism-8")
     print("End!")
 
 if __name__ == '__main__':

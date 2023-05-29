@@ -17,9 +17,11 @@ The library [PRAW](https://praw.readthedocs.io/en/stable/) is used in this scrip
 
 For the future, this pipeline is going to be automatize to run every week. 
 
----
-
 ## Storage
 
 To store the collected data, a PostgreSQL database will be used.
+
+## Volume
+
+140 messages per day.
 
