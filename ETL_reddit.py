@@ -1,6 +1,7 @@
 import praw
 import authentification_token as auth
 import pandas as pd
+import datetime
 
 def extract():
     client = praw.Reddit(
@@ -28,29 +29,21 @@ def extract():
         )
     return data
 
-"""def transform(data):
-    num_comments = [post.get('num_comments') for post in data]
-
-    mean_num_comment = sum(num_comments) / len(num_comments)
-    std_num_comments = (
-        sum([(x -  mean_num_comment) ** 2 for x in num_comments])
-        / len(num_comments)
-    ) ** 0.5
-    return [post
-            for post in data
-            if post.get("num_comments") > mean_num_comment + 2 * std_num_comments
-            ]"""
+def transform(data):
+    data = pd.DataFrame(data)
+    data['created'] = pd.to_datetime(data['created'])
+    return data
 
 def load(data, dataset_name):
-    data = pd.DataFrame(data)
-    data.to_csv("data/"+dataset_name+".csv")
+    data.to_csv("data/" + dataset_name + ".csv")
 
 def main():
-    print("Beginning Extraction...")
+    print("Extraction...")
     data = extract()
-    #transformed_data = transform(data)
-    print("Beginning Loading...")
-    load(data, "autism-10")
+    print("Transformation...")
+    transformed_data = transform(data)
+    print("Loading...")
+    load(transformed_data, "autism-test-transform")
     print("End!")
 
 if __name__ == '__main__':
