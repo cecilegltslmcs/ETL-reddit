@@ -10,14 +10,10 @@ USERNAME = auth.username
 PASSWORD = auth.password
 USER_AGENT = auth.user_agent
 
-# USERNAME_DB = auth.user_db
-# PASSWORD_DB = auth.password_db
-# HOST_DB = auth.host
-# NAME_DB = auth.database
-# PORT_DB = auth.port
 STRING_CONNECTION = auth.string_connection
 
 def extract(subreddit_name, limit_post):
+    print("Extraction...")
     client = praw.Reddit(
         client_id = PERSONAL_SCRIPT,
         client_secret = CLIENT_SECRET,
@@ -45,28 +41,22 @@ def extract(subreddit_name, limit_post):
     return data
 
 def transform(data):
+    print("Transformation...")
     data = pd.DataFrame(data)
     data['created'] = pd.to_datetime(data['created'])
+    data['id'] = data['id'].values.astype(str)
     return data
 
 def load(data):
+    print("Loading on database...")
     engine = create_engine(STRING_CONNECTION)
-    conn = engine.connect()
-    
-    data.to_sql('reddit_extraction', con=conn, if_exists='replace', index=False)
-    """conn = psycopg2.connect(conn_string)"""
-    
-    conn.autocommit = True
-    conn.close()
+    data.to_sql("reddit_extraction", engine, if_exists='append')
+    return print('ETL FINISHED! ')
 
 def main():
-    print("Extraction...")
     data = extract('Autism', 2500)
-    print("Transformation...")
     transformed_data = transform(data)
-    print("Loading...")
     load(transformed_data)
-    print("End!")
 
 if __name__ == '__main__':
     main()
