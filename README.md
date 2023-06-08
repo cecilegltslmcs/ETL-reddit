@@ -1,9 +1,6 @@
 # ETL for Reddit post
 
-This project came after doing a PoC about [ADHD Reddit posts]((https://github.com/cecilegltslmcs/reddit-nlp-analysis/blob/main/adhd/adhd-reddit-analysis.ipynb)).
 The main idea of the code came from this [article](https://www.startdataengineering.com/post/code-patterns/).
-
-
 
 For my use, I change some part :
 - the transform part in order to transform timestamp into datetime
