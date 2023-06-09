@@ -31,7 +31,6 @@ def extract(subreddit_name, limit_post):
             {   'id' : submission.id,
                 'subreddit_name' : subreddit_name,
                 'title': submission.title,
-                'created' : submission.created,
                 'num_comments' : submission.num_comments,
                 'score' : submission.score,
                 'text' : submission.selftext,
@@ -43,7 +42,6 @@ def extract(subreddit_name, limit_post):
 def transform(data):
     print("Transformation...")
     data = pd.DataFrame(data)
-    data['created'] = pd.to_datetime(data['created'])
     data['id'] = data['id'].values.astype(str)
     return data
 

@@ -6,7 +6,6 @@ CREATE TABLE reddit_extraction(
     id VARCHAR(20),
     subreddit_name VARCHAR(255),
     title VARCHAR(255),
-    created DATE,
     num_comments INT,
     score INT,
     text VARCHAR(1000),
