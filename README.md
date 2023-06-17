@@ -1,13 +1,30 @@
-# ETL for Reddit post
+# Collection of Reddit Post
 
-The main idea of the code came from this [article](https://www.startdataengineering.com/post/code-patterns/).
+* Last update: 17th June 2023 *
 
-For my use, I change some part :
-- the transform part in order to transform timestamp into datetime
-- the load part in order to use PostgreSQL instead of sqlite.
+## Table of content
 
-The library [PRAW](https://praw.readthedocs.io/en/stable/) is used in this script but it can be also possible to used [request](https://fr.python-requests.org/en/latest/).
+- [General Info](#general-info)
+- [Technologies](#technologies)
+- [Credits](#credits)
+- [Source](#source)
 
-## Storage
+## General Info
 
-A PostgreSQL is used to store the collected data. For the moment, this database is composed by one table. 
+The aim of this project is to collect data from the social network Reddit.The library PRAW is used to communicate with the Reddit's API. After requesting Reddit's API, data are transformed into a dataframe by the data pipeline. After these transformations, the data are stored in a SQL Database (PostgreSQL). A Jupyter Notebook can used this database in order to realise analysis and create a Reddit post Classifier. 
+
+![Alt text](illustration/Reddit-collection.png)
+
+## Technologies
+
+- Python
+- [PRAW](https://praw.readthedocs.io/en/stable/)
+- PostgreSQL
+
+## Credits
+
+- Cecile Guillot
+
+## Source
+
+- [Article from Start Data Engineering](https://www.startdataengineering.com/post/code-patterns/).

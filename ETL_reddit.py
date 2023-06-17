@@ -1,5 +1,5 @@
 import praw
-import authentification_token as auth
+import utils.authentification_token as auth
 import pandas as pd
 import psycopg2
 from sqlalchemy import create_engine
