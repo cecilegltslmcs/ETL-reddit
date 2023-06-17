@@ -1,6 +1,6 @@
 # Collection of Reddit Post
 
-* Last update: 17th June 2023 *
+*Last update: 17th June 2023*
 
 ## Table of content
 
