@@ -1,6 +1,6 @@
 # Collection of Reddit Post
 
-*Last update: 17th June 2023*
+*Last update: 5th July 2023*
 
 ## Table of content
 
@@ -19,7 +19,7 @@ The aim of this project is to collect data from the social network Reddit.The li
 
 - Python
 - [PRAW](https://praw.readthedocs.io/en/stable/)
-- PostgreSQL
+- [PostgreSQL](https://www.postgresql.org/docs/)
 
 ## Credits
 
