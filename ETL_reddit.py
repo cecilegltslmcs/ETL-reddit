@@ -13,6 +13,7 @@ USER_AGENT = auth.user_agent
 STRING_CONNECTION = auth.string_connection
 
 def extract(subreddit_name, limit_post):
+    print("Name of the subreddit: ", subreddit_name)
     print("Extraction...")
     client = praw.Reddit(
         client_id = PERSONAL_SCRIPT,
@@ -51,10 +52,12 @@ def load(data):
     data.to_sql("reddit_extraction", engine, if_exists='append')
     return print('ETL FINISHED! ')
 
-def main():
-    data = extract('Autism', 2500)
+def main(subreddit_name):
+    data = extract(subreddit_name, 2500)
     transformed_data = transform(data)
     load(transformed_data)
 
 if __name__ == '__main__':
-    main()
+    subreddit = ["Autism", "AutismInWomen"]
+    for i in subreddit:
+        main(i)
