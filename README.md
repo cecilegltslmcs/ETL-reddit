@@ -20,6 +20,12 @@ The aim of this project is to collect data from the social network Reddit.The li
 - Python
 - [PRAW](https://praw.readthedocs.io/en/stable/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
+- [Airflow](https://airflow.apache.org/)
+
+## Illustration
+
+*Airflow UI with DAG of the Reddit collection pipeline*
+![Alt text](illustration/image.png)
 
 ## Credits
 
