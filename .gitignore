@@ -1,4 +1,5 @@
 authentification_token.py
+.env
 myenv/
 __pycache__
 data/
