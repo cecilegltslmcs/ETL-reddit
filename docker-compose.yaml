@@ -7,13 +7,11 @@ services:
     image: postgres
     restart: always
     ports:
-      - "5432:5432"
+      - "5432:5433"
     environment:
       - POSTGRES_DB = reddit
     env_file:
       - .env_postgres
-    volume:
-      - postgresdata:/data/db
 
   adminer:
     image: adminer
@@ -24,12 +22,10 @@ services:
   etl-python:
     container_name: etl-python
     restart: always
-    build:
-      context:./app/
+    build: 
+      context: ./app/
       dockerfile: Dockerfile
     depends_on:
       - postgres
 
-volumes:
-  postgresdata
 
