@@ -31,16 +31,16 @@ def extract(subreddit_name, limit_post):
     data = []
 
     for submission in reddit_post:
-        data.append(
-            {   'id' : submission.id,
-                'subreddit_name' : subreddit_name,
-                'title': submission.title,
-                'num_comments' : submission.num_comments,
-                'score' : submission.score,
-                'text' : submission.selftext,
-                'url': submission.url,             
-            }
-        )
+        yield {
+            'id': submission.id,
+            'subreddit_name': subreddit_name,
+            'title': submission.title,
+            'num_comments': submission.num_comments,
+            'score': submission.score,
+            'text': submission.selftext,
+            'url': submission.url,
+        }
+    
     return data
 
 def transform(data):
