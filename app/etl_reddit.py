@@ -47,6 +47,7 @@ def transform(data):
     print("Transformation...")
     data = pd.DataFrame(data)
     data['id'] = data['id'].values.astype(str)
+    data.set_index('id')
     return data
 
 def load(data):
