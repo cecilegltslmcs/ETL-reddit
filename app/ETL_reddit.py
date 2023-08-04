@@ -13,7 +13,7 @@ USERNAME = os.getenv("username")
 PASSWORD = os.getenv("password")
 USER_AGENT = os.getenv("user_agent")
 
-STRING_CONNECTION = os.getenv("string_connection")
+STRING_CONNECTION = os.getenv("string_connection_docker")
 
 def extract(subreddit_name, limit_post):
     print("Name of the subreddit: ", subreddit_name)

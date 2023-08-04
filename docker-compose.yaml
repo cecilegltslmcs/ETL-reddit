@@ -1,0 +1,35 @@
+version : '3.9'
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB = reddit
+    env_file:
+      - .env_postgres
+    volume:
+      - postgresdata:/data/db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  
+  etl-python:
+    container_name: etl-python
+    restart: always
+    build:
+      context:./app/
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+
+volumes:
+  postgresdata
+

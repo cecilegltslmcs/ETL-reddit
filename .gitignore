@@ -1,6 +1,5 @@
-authentification_token.py
 .env
 myenv/
 __pycache__
 data/
-dags/authentification_token.py
+.env_postgres
