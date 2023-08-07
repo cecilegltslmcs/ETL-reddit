@@ -8,6 +8,8 @@ services:
     restart: always
     ports:
       - "5432:5432"
+    volumes:
+      - postgresdb:/db/data
     environment:
       - POSTGRES_DB = reddit
     env_file:
@@ -28,5 +30,8 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres
+  
+volumes:
+  postgresdb:
 
 
