@@ -10,17 +10,18 @@ def connection_to_reddit(personal_script: str,
                          username: str,
                          password: str,
                          user_agent: str) -> praw.reddit.Reddit:
-    """_summary_
+    """Takes the different credentials generate by Reddit app (https://www.reddit.com/prefs/apps) 
+    and creates a client.
 
     Args:
-        personal_script (str): _description_
-        client_secret (str): _description_
-        username (str): _description_
-        password (str): _description_
-        user_agent (str): _description_
+        personal_script (str): personal script generates by Reddit app.
+        client_secret (str): client secret generates by Reddit app.
+        username (str): username used associated to Reddit account.
+        password (str): password used associated to Reddit account.
+        user_agent (str): user agent generates by Reddit app.
 
     Returns:
-        praw.reddit.Reddit: _description_
+        praw.reddit.Reddit: Reddit client from Praw library
     """
     try:
         client = praw.Reddit(
@@ -37,19 +38,18 @@ def connection_to_reddit(personal_script: str,
 
 def extract(subreddit_name: str, 
             limit_post: int,
-            client) -> list:
-    """_summary_
+            client):
+    """Takes the name of the subreddit name to extract data,
+    the number of posts to extract and the client creates 
+    by the function connection_to_reddit
 
     Args:
-        subreddit_name (str): _description_
-        limit_post (int): _description_
-        client (_type_): _description_
-
-    Returns:
-        list: _description_
+        subreddit_name (str): name of the subreddit to explore
+        limit_post (int): number of reddit posts to extract
+        client (_type_): client create with connection_to_reddit function
 
     Yields:
-        Iterator[list]: _description_
+        Iterator[list]: list of Reddit posts extracted
     """
     print("Name of the subreddit: ", subreddit_name)
     print("Extraction...")
@@ -69,13 +69,14 @@ def extract(subreddit_name: str,
         }
     
 def transform(data: list) -> pd.DataFrame:
-    """_summary_
+    """Takes the list of data in order to transform data
+    before storage in database
 
     Args:
-        data (list): _description_
+        data (list): list of data extract from Reddit
 
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: DataFrame with transformed data
     """
     print("Transformation...")
     data = pd.DataFrame(data)
@@ -84,13 +85,15 @@ def transform(data: list) -> pd.DataFrame:
     return data
 
 def connection_to_database(string_connection: str) -> sqlalchemy.engine.base.Engine:
-    """_summary_
+    """Takes the string connection to database
+    and return an engine
 
     Args:
-        string_connection (str): _description_
+        string_connection (str): uri connection to the database in form of
+        postgresql://username:password@localhost:5432/db
 
     Returns:
-        sqlalchemy.engine.base.Engine: _description_
+        sqlalchemy.engine.base.Engine: SQLAlchemy engine related to the uri
     """
     try:
         engine = create_engine(string_connection)
@@ -99,37 +102,45 @@ def connection_to_database(string_connection: str) -> sqlalchemy.engine.base.Eng
     return engine
 
 def load(data: pd.DataFrame,
-         engine) -> str:
-    """_summary_
+         engine: sqlalchemy.engine.base.Engine) -> str:
+    """Takes the transformed data and
+    the engine in order to load data in database
 
     Args:
-        data (pd.DataFrame): _description_
-        engine (_type_): _description_
+        data (pd.DataFrame): transformed dataframe from Reddit extraction
+        engine (sqlalchemy.engine.base.Engine): engine for connection to database
 
     Returns:
-        str: _description_
+        str: return statement related to the loading of the data
     """
     print("Loading on database...")
-    data.to_sql("reddit_extraction", engine, if_exists='append')
-    return 'Data loaded into database!'
+    try:
+        data.to_sql("reddit_extraction", engine, if_exists='append')
+        return 'Data loaded into database!'
+    except:
+        return 'Error when loading data in database! '
 
 def main(subreddit_name: str,
          client: praw.reddit.Reddit,
          engine: sqlalchemy.engine.base.Engine) -> str:
-    """_summary_
+    """Takes the name of the subreddit, the praw client and the SQL engine
+    in order to realise the ETL step
 
     Args:
-        subreddit_name (str): _description_
-        client (praw.reddit.Reddit): _description_
-        engine (sqlalchemy.engine.base.Engine): _description_
+        subreddit_name (str): name of the subreddit to extract
+        client (praw.reddit.Reddit): praw client to realise connection to Reddit
+        engine (sqlalchemy.engine.base.Engine): Engine to realise connection to the database
 
     Returns:
-        str: _description_
+        str: return statement related to the state of the ETL
     """
-    data = extract(subreddit_name, 2500, client)
-    transformed_data = transform(data)
-    load(transformed_data, engine)
-    return 'ETL FINISHED! '
+    try:
+        data = extract(subreddit_name, 2500, client)
+        transformed_data = transform(data)
+        load(transformed_data, engine)
+        return 'ETL FINISHED!'
+    except:
+        return 'Error during ETL realisation'
 
 if __name__ == '__main__':
     load_dotenv()
