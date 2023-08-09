@@ -19,7 +19,7 @@ The aim of this project is to collect data from the social network Reddit.The li
 
 ## Technologies
 
-- Python
+- [Python](https://www.python.org/)
 - [PRAW](https://praw.readthedocs.io/en/stable/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
 - ~~[Airflow](https://airflow.apache.org/)~~
