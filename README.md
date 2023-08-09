@@ -1,6 +1,7 @@
 # Collection of Reddit Post
 
-*Last update: 7th August 2023*
+*Last update: 9th August 2023*
+
 --> Update for new version incoming...
 
 ## Table of content
@@ -21,7 +22,7 @@ The aim of this project is to collect data from the social network Reddit.The li
 - Python
 - [PRAW](https://praw.readthedocs.io/en/stable/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
-- ~[Airflow](https://airflow.apache.org/)~
+- ~~[Airflow](https://airflow.apache.org/)~~
 - [Docker](https://www.docker.com/)
 
 ## Credits
