@@ -4,6 +4,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 def connection_to_reddit(personal_script: str, 
                          client_secret: str, 
@@ -55,7 +56,6 @@ def extract(subreddit_name: str,
     print("Extraction...")
     subreddit = client.subreddit(subreddit_name)
     reddit_post = subreddit.hot(limit=limit_post)
-    data = []
 
     for submission in reddit_post:
         yield {
@@ -63,6 +63,7 @@ def extract(subreddit_name: str,
             'subreddit_name': subreddit_name,
             'title': submission.title,
             'num_comments': submission.num_comments,
+            'date': submission.created,
             'score': submission.score,
             'text': submission.selftext,
             'url': submission.url,
@@ -81,6 +82,7 @@ def transform(data: list) -> pd.DataFrame:
     print("Transformation...")
     data = pd.DataFrame(data)
     data['id'] = data['id'].values.astype(str)
+    data['date'] = pd.to_datetime(data['date'], unit='s')
     data.set_index('id')
     return data
 
