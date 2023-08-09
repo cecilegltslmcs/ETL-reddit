@@ -40,9 +40,9 @@ def connection_to_reddit(personal_script: str,
 def extract(subreddit_name: str, 
             limit_post: int,
             client):
-    """Takes the name of the subreddit name to extract data,
+    """Takes the name of the subreddit to extract data,
     the number of posts to extract and the client creates 
-    by the function connection_to_reddit
+    by the function connection_to_reddit.
 
     Args:
         subreddit_name (str): name of the subreddit to explore
@@ -70,8 +70,8 @@ def extract(subreddit_name: str,
         }
     
 def transform(data: list) -> pd.DataFrame:
-    """Takes the list of data in order to transform data
-    before storage in database
+    """Takes a list of data, transform the data 
+    and structure in DataFrame before loading data in database.
 
     Args:
         data (list): list of data extract from Reddit
@@ -88,7 +88,7 @@ def transform(data: list) -> pd.DataFrame:
 
 def connection_to_database(string_connection: str) -> sqlalchemy.engine.base.Engine:
     """Takes the string connection to database
-    and return an engine
+    and return an engine.
 
     Args:
         string_connection (str): uri connection to the database in form of
@@ -106,7 +106,7 @@ def connection_to_database(string_connection: str) -> sqlalchemy.engine.base.Eng
 def load(data: pd.DataFrame,
          engine: sqlalchemy.engine.base.Engine) -> str:
     """Takes the transformed data and
-    the engine in order to load data in database
+    the engine in order to load data in database.
 
     Args:
         data (pd.DataFrame): transformed dataframe from Reddit extraction
@@ -126,7 +126,7 @@ def main(subreddit_name: str,
          client: praw.reddit.Reddit,
          engine: sqlalchemy.engine.base.Engine) -> str:
     """Takes the name of the subreddit, the praw client and the SQL engine
-    in order to realise the ETL step
+    in order to realise the ETL step.
 
     Args:
         subreddit_name (str): name of the subreddit to extract
