@@ -33,13 +33,12 @@ def connection_to_reddit(personal_script: str,
         user_agent = user_agent
     )
     except:
-        print("Failed to connect to reddit! ")
-        
+        print("Failed to connect to reddit! ")      
     return client
 
-def extract(subreddit_name: str, 
+def extract(subreddit_name: str,
             limit_post: int,
-            client):
+            client: praw.reddit.Reddit):
     """Takes the name of the subreddit to extract data,
     the number of posts to extract and the client creates 
     by the function connection_to_reddit.
@@ -47,7 +46,7 @@ def extract(subreddit_name: str,
     Args:
         subreddit_name (str): name of the subreddit to explore
         limit_post (int): number of reddit posts to extract
-        client (_type_): client create with connection_to_reddit function
+        client (praw.reddit.Reddit): client create with connection_to_reddit function
 
     Yields:
         Iterator[list]: list of Reddit posts extracted
