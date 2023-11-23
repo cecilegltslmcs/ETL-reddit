@@ -1,8 +1,8 @@
 # Collection of Reddit Post
 
-*Last update: 9th August 2023*
+*Last update: 23th November 2023*
 
---> Update for new version incoming...
+## Deprecated: This project is deprecated because of the pricing changes of [Reddit API](https://www.techtarget.com/whatis/feature/Reddit-pricing-API-charge-explained)).
 
 ## Table of content
 
